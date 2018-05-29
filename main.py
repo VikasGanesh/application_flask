@@ -2,6 +2,7 @@ from flask import Flask,render_template,request,flash
 from flask_login import LoginManager, UserMixin, login_required, login_user, logout_user, current_user
 
 app=Flask(__name__)
+app.secret_key = 'super secret key'
 
 class User(UserMixin):
     def __init__(self,name,password):
@@ -25,10 +26,10 @@ def Login():
             user=User(str(username),str(password))
             login_user(user)
         else:
-            flash('msg',"False")
+            flash("False",'msg')
             return render_template('login.html')
     else:
-        flash('msg',"False")
+        flash("False",'msg')
         return render_template('login.html')
 
 

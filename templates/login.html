@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
+<title>Bootstrap Example</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
 @import url(https://fonts.googleapis.com/css?family=Roboto:300);
@@ -93,6 +99,8 @@
 .container .info span .fa {
   color: #EF3B3A;
 }
+
+
 body {
   background: #76b852; /* fallback for old browsers */
   background: -webkit-linear-gradient(right, #76b852, #8DC26F);
@@ -116,25 +124,27 @@ body {
             <button>login</button>
             <p class="message">Not registered? <a href="#">Create an account</a></p>
           </form>
-          {% with messages = get_flashed_messages(category_filter=["deletedid"]) %}
-            {% if messages %}
-                <ul>
-                    {% for message in messages %}
-                          {% if message=="False" %}
-                          <br>
-                          <br>
-                          <div class="container">
-                          <div class="alert alert-danger">
-                          <center><strong>Sorry!</strong>&nbsp;&nbsp;&nbsp;Wrong username password.</center>
-                          </div>
-                          </div>
-                        {% endif %}
-                    {% endfor %}
-                </ul>
-            {% endif %}
-        {% endwith %}
         </div>
-      </div>
-
+        <center>
+        {% with messages = get_flashed_messages(category_filter=["msg"]) %}
+        {% if messages %}
+            <ul>
+                {% for message in messages %}
+                      {% if message=="False" %}
+                      <br>
+                      <br>
+                      <div class="container" name="con">
+                      <div class="alert alert-danger">
+                      <strong>Sorry&nbsp;!</strong>&nbsp;&nbsp;&nbsp;Wrong username password.
+                      </div>
+                      </div>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+    </center>
+    </div>
+   
 </body>
 </html>
