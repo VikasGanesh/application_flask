@@ -116,6 +116,23 @@ body {
             <button>login</button>
             <p class="message">Not registered? <a href="#">Create an account</a></p>
           </form>
+          {% with messages = get_flashed_messages(category_filter=["deletedid"]) %}
+            {% if messages %}
+                <ul>
+                    {% for message in messages %}
+                          {% if message=="False" %}
+                          <br>
+                          <br>
+                          <div class="container">
+                          <div class="alert alert-danger">
+                          <center><strong>Sorry!</strong>&nbsp;&nbsp;&nbsp;Wrong username password.</center>
+                          </div>
+                          </div>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
         </div>
       </div>
 
