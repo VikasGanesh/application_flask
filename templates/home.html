@@ -88,42 +88,55 @@
   font-weight: 300;
   color: #1a1a1a;
 }
-.container .info span {
-  color: #4d4d4d;
-  font-size: 12px;
-}
-.container .info span a {
-  color: #000000;
-  text-decoration: none;
-}
-.container .info span .fa {
-  color: #EF3B3A;
+#map{
+  height: 100%;
+ }
+ 
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 
-body {
-  background: #76b852; /* fallback for old browsers */
-  background: -webkit-linear-gradient(right, #76b852, #8DC26F);
-  background: -moz-linear-gradient(right, #76b852, #8DC26F);
-  background: -o-linear-gradient(right, #76b852, #8DC26F);
-  background: linear-gradient(to left, #76b852, #8DC26F);
-  font-family: "Roboto", sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;      
-
-}
 </style>
+
+<script>
+
+  function myfunction() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(initMap);
+    } else { 
+        x.innerHTML = "Geolocation is not supported by this browser.";
+    }
+    }
+  
+    var map;
+    function initMap(position) {
+      map = new google.maps.Map(document.getElementById('map'), {
+        center: {lat: position.coords.latitude, lng: position.coords.longitude},
+        zoom: 18
+      });
+    }
+  </script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB39AyR3cs3kxm6inFnuJNBFh9KehI5VK0&callback=myfunction"
+  async defer></script>
+
+
 </head>
 <body>
-
-    <div class="login-page">
+    
+    
+    
+        <div id="map"></div>
+        
         <div class="form">
           <form class="login-form" action="/logout" method = post >
-            <button>log out{{user}}</button>
+            <button>log out  {{user}}</button>
             <p class="message">Not registered? <a href="#">Create an account</a></p>
           </form>
         </div>
-    </div>
+   
    
 </body>
 </html>
