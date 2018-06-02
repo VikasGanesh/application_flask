@@ -113,18 +113,33 @@ body {
 
 }
 </style>
+
+<script>
+function toggle(){
+   $('form').animate({height: "toggle", opacity: "toggle"}, "slow");
+}
+</script>
+
 </head>
 <body>
 
-    <div class="login-page">
-        <div class="form">
-          <form class="login-form" action="/login" method = post >
-            <input type="text" placeholder="username" name="username"/>
-            <input type="password" placeholder="password" name="password" />
-            <button>login</button>
-            <p class="message">Not registered? <a href="#">Create an account</a></p>
-          </form>
-        </div>
+  <div class="login-page">
+    <div class="form" >
+      <form class="register-form"  action="/signup" method = post >
+        <input type="text" placeholder="email address" name="username" required/>
+        <input type="password" placeholder="password" name="password"required/>
+        <input type="password" placeholder="password" name="repassword" required/>
+        <button>create</button>
+        <p class="message">Already registered? <a href="#" onclick="toggle()" >Sign In</a></p>
+      </form>
+      <form class="login-form"  action="/login" method = post >
+        <input type="text" placeholder="username" name="username" required/>
+        <input type="password" placeholder="password" name ="password" required/>
+        <button>login</button>
+        <p class="message">Not registered? <a href="#" onclick="toggle()">Create an account</a></p>
+      </form>
+    </div>
+  </div>
         <center>
         {% with messages = get_flashed_messages(category_filter=["msg"]) %}
         {% if messages %}
@@ -135,7 +150,7 @@ body {
                       <br>
                       <div class="container" name="con">
                       <div class="alert alert-danger">
-                      <strong>Sorry&nbsp;!</strong>&nbsp;&nbsp;&nbsp;Wrong username password.
+                      <strong>Sorry&nbsp;!</strong>&nbsp;&nbsp;&nbsp;Wrong username or password.
                       </div>
                       </div>
                     {% endif %}

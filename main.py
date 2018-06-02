@@ -65,7 +65,23 @@ def Login():
     if userfound==0:
         flash("False",'msg')
         return render_template('login.html')
-   
+
+
+@app.route('/signup', methods = ['POST'])
+def signup():
+    try:
+        email=request.form['username']
+        password=request.form['password']
+        email=str(email)
+        password=str(password)
+        print email,password
+        DBA.AddUser(email,password)
+        return render_template('login.html')
+
+    except Exception as e:
+        print e
+                
+ 
 
 @app.route('/logout', methods = ['POST'] )
 def logout():
